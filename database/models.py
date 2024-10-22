@@ -28,7 +28,7 @@ class Problems(Model):
         on_delete=fields.SET_NULL,
         null=True
     )
-    time = fields.DateField(null=False)
+    time = fields.DatetimeField(auto_now_add=True)
 
     class Meta:
         table = "problems"
