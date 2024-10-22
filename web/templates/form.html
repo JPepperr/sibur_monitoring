@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Fill the form</h1>
+
+    <!-- Форма для отправки данных -->
+    <div id="formDiv">
+        <form method="POST" action="/submit">
+            <label for="priority">Priority:</label>
+            <select id="priority" name="priority">
+                <option value="INFO">INFO</option>
+                <option value="CRIT">CRIT</option>
+                <option value="WARN">WARN</option>
+            </select><br><br>
+
+            <!-- Поле description как однострочное текстовое поле -->
+            <label for="description">Description:</label><br>
+            <input type="text" id="description" name="description" required><br><br>
+
+            <!-- Поле message как многострочное текстовое поле -->
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
