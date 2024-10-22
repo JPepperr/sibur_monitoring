@@ -44,7 +44,12 @@ class Person(Model):
     login = fields.CharField(max_length=2000, null=True)
     password = fields.CharField(max_length=2000, null=True)
     channel = fields.CharEnumField(enum_type=ChannelEnum, null=False)
-    type = fields.CharField(max_length=2000, null=False)
+    type = fields.ForeignKeyField(
+        'models_type.Type',
+        related_name='person',
+        on_delete=fields.SET_NULL,
+        null=True
+    )
 
     class Meta:
         table = "person"
