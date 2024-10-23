@@ -1,0 +1,16 @@
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+logs/
+__pycache__/
+
+**.log
+**.db
+**.db-shm
+**.db-wal
+/.idea/
+**cherepaha
+**cherepaha-shm
+**cherepaha-wal

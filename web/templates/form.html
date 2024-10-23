@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        /* Сброс стилей */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Основные стили страницы */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Контейнер для формы */
+        #formDiv {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        label {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        select, input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        select {
+            background-color: #fff;
+            color: #333;
+        }
+
+        input[type="text"], textarea {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+
+        input[type="text"]:focus, textarea:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Кнопки Submit и Home */
+        .button {
+            background-color: #fff;
+            color: #2575fc;
+            border: none;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #2575fc;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .button:focus {
+            outline: none;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            #formDiv {
+                padding: 30px;
+            }
+
+            .button {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="formDiv">
+        <h1>Fill the form</h1>
+
+        <!-- Форма для отправки данных -->
+        <form method="POST" action="/submit">
+            <label for="priority">Priority:</label>
+            <select id="priority" name="priority">
+                <option value="INFO">Информационная</option>
+                <option value="WARN">Предупреждающая</option>
+                <option value="CRIT">Критическая</option>
+            </select>
+
+            <!-- Поле description как однострочное текстовое поле -->
+            <label for="description">Проблема:</label>
+            <input type="text" id="description" name="description" required>
+
+            <!-- Поле message как многострочное текстовое поле -->
+            <label for="message">Описание:</label>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea>
+
+            <input type="submit" value="Отправить" class="button">
+        </form>
+
+        <!-- Кнопка для возврата на главную страницу -->
+        <button class="button" onclick="window.location.href='/'">На главную</button>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problems List</title>
+    <style>
+        /* Сброс стилей */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Основные стили страницы */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* Стиль для карточек с проблемами */
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.8rem;
+        }
+
+        .card p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* Кнопка возврата на главную страницу */
+        .btn {
+            display: inline-block;
+            background-color: #fff;
+            color: #2575fc;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .btn:hover {
+            background-color: #2575fc;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .card h2 {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>List of Problems</h1>
+
+    {% for item in data %}
+    <div class="card">
+        <h2>{{ item[0] }}</h2>  <!-- Description как заголовок -->
+        <p>{{ item[1] }}</p>    <!-- Message как описание -->
+    </div>
+    {% endfor %}
+
+    <!-- Кнопка для возврата на главную страницу -->
+    <a href="/" class="btn">Go back to Home</a>
+
+</body>
+</html>

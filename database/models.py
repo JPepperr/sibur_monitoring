@@ -1,3 +1,6 @@
+from enum import unique
+# from quopri import quote
+
 from tortoise.models import Model
 from tortoise import fields
 from enum import Enum
@@ -25,7 +28,7 @@ class Problems(Model):
         on_delete=fields.SET_NULL,
         null=True
     )
-    time = fields.DateField(null=False)
+    time = fields.DatetimeField(auto_now_add=True)
 
     class Meta:
         table = "problems"
@@ -50,6 +53,8 @@ class Person(Model):
         on_delete=fields.SET_NULL,
         null=True
     )
+    tg_id = fields.CharField(max_length=2000, null=True)
+    email = fields.CharField(max_length=2000, null=True)
 
     class Meta:
         table = "person"
