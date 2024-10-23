@@ -21,11 +21,6 @@ async def submit():
     description = request.form.get('description')
     message = request.form.get('message')
 
-    # Выводим данные в консоль
-    print(f'Priority: {priority}')
-    print(f'Description: {description}')
-    print(f'Message: {message}')
-
     await Problems.create(priority=priority, description=description, message=message, status="START",
                           time=datetime.datetime.now())
 
@@ -46,4 +41,4 @@ async def show():
 
 
 def setup():
-    app.run(host='127.0.0.1', port=5000, debug=True)
+    app.run(host='127.0.0.1', port=8080, debug=True)

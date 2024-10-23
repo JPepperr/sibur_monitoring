@@ -53,6 +53,8 @@ class Person(Model):
         on_delete=fields.SET_NULL,
         null=True
     )
+    tg_id = fields.CharField(max_length=2000, null=True)
+    email = fields.CharField(max_length=2000, null=True)
 
     class Meta:
         table = "person"
