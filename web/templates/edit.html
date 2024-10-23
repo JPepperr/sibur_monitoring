@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form</title>
+    <title>Edit Problem</title>
     <style>
         /* Сброс стилей */
         * {
@@ -115,30 +115,30 @@
 <body>
 
     <div id="formDiv">
-        <h1>Заполните форму</h1>
+        <h1>Редактировать проблему</h1>
 
-        <!-- Форма для отправки данных -->
-        <form method="POST" action="/submit">
+        <!-- Форма для редактирования проблемы -->
+        <form method="POST" action="/edit/{{ problem.id }}">
             <label for="priority">Вид:</label>
             <select id="priority" name="priority">
-                <option value="INFO">Информационная</option>
-                <option value="WARN">Предупреждающая</option>
-                <option value="CRIT">Критическая</option>
+                <option value="INFO" {% if problem.priority == 'INFO' %}selected{% endif %}>Информационная</option>
+                <option value="WARN" {% if problem.priority == 'WARN' %}selected{% endif %}>Предупреждающая</option>
+                <option value="CRIT" {% if problem.priority == 'CRIT' %}selected{% endif %}>Критическая</option>
             </select>
 
             <!-- Поле description как однострочное текстовое поле -->
             <label for="description">Проблема:</label>
-            <input type="text" id="description" name="description" required>
+            <input type="text" id="description" name="description" value="{{ problem.description }}" required>
 
             <!-- Поле message как многострочное текстовое поле -->
             <label for="message">Описание:</label>
-            <textarea id="message" name="message" rows="4" cols="50" required></textarea>
+            <textarea id="message" name="message" rows="4" cols="50" required>{{ problem.message }}</textarea>
 
-            <input type="submit" value="Отправить" class="button">
+            <input type="submit" value="Обновить" class="button">
         </form>
 
         <!-- Кнопка для возврата на главную страницу -->
-        <button class="button" onclick="window.location.href='/'">На главную</button>
+        <button class="button" onclick="window.location.href='/show'">Отмена</button>
     </div>
 
 </body>
