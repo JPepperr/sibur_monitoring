@@ -30,6 +30,7 @@ class Problems(Model):
     )
     time = fields.DatetimeField(auto_now_add=True)
 
+
     class Meta:
         table = "problems"
         app = "models_problems"
