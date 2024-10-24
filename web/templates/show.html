@@ -1,94 +1,205 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Problems List</title>
+    <title>Проблемы</title>
     <style>
-        /* Общий стиль */
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #f0f0f0;
-            padding: 20px;
+        /* Общие сбросы */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        h1 {
+        /* Основной стиль страницы */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e9f1f5, #d5e6f1); /* Новый фон */
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Центрирование содержимого */
+        }
+
+        h1, h2 {
+            color: #02818a; /* Цвет заголовков */
             text-align: center;
             margin-bottom: 20px;
         }
 
-        .button-group {
+        /* Оформление кнопок навигации */
+        .button-container {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            gap: 15px;
         }
 
-        .button-group button {
-            background-color: #2575fc;
-            color: white;
+        .button {
+            background-color: #02818a; /* Цвет кнопок */
+            color: #fff;
             border: none;
             padding: 10px 20px;
-            margin: 0 10px;
+            font-size: 1rem;
+            text-transform: uppercase;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            text-decoration: none;
         }
 
-        .button-group button:hover {
-            background-color: #1a54c9;
+        .button:hover {
+            background-color: #026b6b; /* Темнее при наведении */
         }
 
+        .button:focus {
+            outline: none;
+        }
+
+        /* Контейнер карточек */
         .card {
-            border: 1px solid #ccc;
-            background-color: white;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 5px;
-            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%; /* Ширина карточки */
+            max-width: 600px; /* Максимальная ширина карточки */
         }
 
         .card h2 {
-            margin-top: 0;
+            color: #333;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
         }
 
-        .edit-button {
-            background-color: #28a745;
+        .card p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Кнопки внутри карточек */
+        .card-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .card .button {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* Футер */
+        footer {
+            background-color: #02818a; /* Цвет футера */
             color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: auto; /* Футер внизу страницы */
         }
 
-        .edit-button:hover {
-            background-color: #218838;
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .button {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+
+            .card {
+                padding: 15px;
+            }
+
+            .card h2 {
+                font-size: 1.2rem;
+            }
+
+            .card p {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Список Проблем</h1>
 
-    <!-- Группа кнопок для фильтрации -->
-    <div class="button-group">
-        <button onclick="window.location.href='/show?status=START'">Ждут действий</button>
-        <button onclick="window.location.href='/show?status=IN_PROGRESS'">В процессе</button>
-        <button onclick="window.location.href='/show?status=END'">Решенные</button>
+    <h1>Проблемы</h1>
+
+    <!-- Кнопки для переключения вкладок -->
+    <div class="button-container">
+        <a href="/show?tab=start" class="button">Ждут действий</a>
+        <a href="/show?tab=in_progress" class="button">В процессе</a>
+        <a href="/show?tab=end" class="button">Решенные</a>
     </div>
 
-    <!-- Отображение проблем -->
-    {% for item in data %}
-    <div class="card">
-        <h2>{{ item[0] }}</h2>  <!-- Description -->
-        <p>{{ item[1] }}</p>    <!-- Message -->
-        <p><strong>Время:</strong> {{ item[2] }}</p> <!-- Время -->
+    <!-- Отображение проблем в зависимости от статуса -->
+    {% if tab == 'start' %}
+        <h2>Ждут действий</h2>
+        {% for item in start_data %}
+            <div class="card">
+                <h2>{{ item[0] }}</h2>  <!-- Description -->
+                <p>{{ item[1] }}</p>    <!-- Message -->
+                <p><strong>Время:</strong> {{ item[2].strftime('%Y-%m-%d %H:%M:%S') }}</p> <!-- Время -->
 
-        <!-- Кнопка редактирования -->
-        <button class="edit-button" onclick="window.location.href='/edit/{{ item[3] }}'">Редактировать</button>
-    </div>
-    {% endfor %}
+                <!-- Кнопки "Редактировать" и "Взяться за решение" -->
+                <div class="card-buttons">
+                    <a href="/edit/{{ item[3] }}" class="button">Редактировать</a>
+                    <form method="POST" action="/take/{{ item[3] }}" style="margin: 0;">
+                        <input type="submit" value="Взяться за решение" class="button">
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    {% elif tab == 'in_progress' %}
+        <h2>В процессе</h2>
+        {% for item in in_progress_data %}
+            <div class="card">
+                <h2>{{ item[0] }}</h2>  <!-- Description -->
+                <p>{{ item[1] }}</p>    <!-- Message -->
+                <p><strong>Время:</strong> {{ item[2].strftime('%Y-%m-%d %H:%M:%S') }}</p> <!-- Время -->
 
-    <!-- Кнопка возврата на главную -->
-    <button onclick="window.location.href='/'" style="margin-top: 20px;">На главную</button>
+                <!-- Кнопки "Редактировать" и "Решено" -->
+                <div class="card-buttons">
+                    <a href="/edit/{{ item[3] }}" class="button">Редактировать</a>
+                    <form method="POST" action="/solve/{{ item[3] }}" style="margin: 0;">
+                        <input type="submit" value="Решено" class="button">
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    {% elif tab == 'end' %}
+        <h2>Решенные</h2>
+        {% for item in end_data %}
+            <div class="card">
+                <h2>{{ item[0] }}</h2>  <!-- Description -->
+                <p>{{ item[1] }}</p>    <!-- Message -->
+                <p><strong>Время:</strong> {{ item[2].strftime('%Y-%m-%d %H:%M:%S') }}</p> <!-- Время -->
+
+                <!-- Только кнопка "Редактировать" -->
+                <div class="card-buttons">
+                    <a href="/edit/{{ item[3] }}" class="button">Редактировать</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Футер -->
+    <footer>
+        <p>&copy; 2024 Система оповещения проблем. Все права защищены.</p>
+    </footer>
+
 </body>
 </html>

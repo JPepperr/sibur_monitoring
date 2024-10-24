@@ -2,88 +2,137 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Система оповещения проблем</title>
     <style>
-        /* Сброс стилей */
+        /* Основной сброс стилей */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Основные стили страницы */
-        body {
+        /* Основной стиль страницы */
+        body, html {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            background: linear-gradient(135deg, #e9f1f5, #d5e6f1);
+            color: #333;
+            height: 100%;
             display: flex;
+            flex-direction: column;
+        }
+
+        /* Шапка сайта */
+        header {
+            background-color: #02818a; /* Новый цвет для шапки */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 2rem;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Основной контейнер */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+            flex-grow: 1; /* Этот блок занимает оставшееся пространство */
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            color: #fff;
         }
 
+        /* Заголовок страницы */
         h1 {
             font-size: 3rem;
-            margin-bottom: 30px;
+            color: #02818a; /* Тот же цвет для заголовка */
+            margin-bottom: 50px;
             text-align: center;
         }
 
-        /* Контейнер для выравнивания содержимого */
-        .container {
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        /* Блок для кнопок */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 600px;
         }
 
-        /* Стили кнопок */
+        /* Кнопки */
         .button {
-            background-color: #fff;
-            color: #2575fc;
-            border: none;
-            border-radius: 25px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin: 15px;
+            background-color: #02818a; /* Новый цвет для кнопок */
+            color: white;
+            padding: 20px 40px;
+            text-decoration: none;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            transition: background-color 0.3s ease, transform 0.3s ease;
             cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            border: none;
         }
 
         .button:hover {
-            background-color: #2575fc;
-            color: #fff;
-            transform: scale(1.1);
+            background-color: #026b6b; /* Темнее при наведении */
+            transform: scale(1.015);
         }
 
-        .button:focus {
-            outline: none;
+        /* Футер */
+        footer {
+            background-color: #02818a; /* Новый цвет для футера */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Стили для мелких экранов */
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Адаптивность */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
+            .button-container {
+                flex-direction: column;
+                align-items: center;
             }
 
             .button {
-                padding: 12px 25px;
-                font-size: 1rem;
+                width: 90%;
+                margin-bottom: 20px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Шапка сайта -->
+    <header>
+        <h1>Система оповещения проблем</h1>
+    </header>
+
+    <!-- Основной контент -->
     <div class="container">
-        <h1>Добро пожаловать с систему оповещения проблем</h1>
-        <button class="button" onclick="window.location.href='/form'">Заполнить</button>
-        <button class="button" onclick="window.location.href='/show'">Посмотреть</button>
+        <h1>Добро пожаловать в СОП</h1>
+        <div class="button-container">
+            <button class="button" onclick="window.location.href='/form'">Сообщить</button>
+            <button class="button" onclick="window.location.href='/show'">Посмотреть</button>
+        </div>
     </div>
+
+    <!-- Футер -->
+    <footer>
+        <p>&copy; 2024 Система оповещения проблем. Все права защищены.</p>
+    </footer>
 
 </body>
 </html>
