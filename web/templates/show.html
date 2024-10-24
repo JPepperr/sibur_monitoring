@@ -143,6 +143,7 @@
         <a href="/show?tab=start" class="button">Ждут действий</a>
         <a href="/show?tab=in_progress" class="button">В процессе</a>
         <a href="/show?tab=end" class="button">Решенные</a>
+        <a href="/" class="button">На главную</a>
     </div>
 
     <!-- Отображение проблем в зависимости от статуса -->
@@ -152,7 +153,7 @@
             <div class="card">
                 <h2>{{ item[0] }}</h2>  <!-- Description -->
                 <p>{{ item[1] }}</p>    <!-- Message -->
-                <p><strong>Время:</strong> {{ item[2].strftime('%Y-%m-%d %H:%M:%S') }}</p> <!-- Время -->
+                <p><strong>Время:</strong> {{ item[2].strftime('%d-%m-%Y %H:%M:%S') }}</p> <!-- Время -->
 
                 <!-- Кнопки "Редактировать" и "Взяться за решение" -->
                 <div class="card-buttons">
@@ -169,8 +170,8 @@
             <div class="card">
                 <h2>{{ item[0] }}</h2>  <!-- Description -->
                 <p>{{ item[1] }}</p>    <!-- Message -->
-                <p><strong>Время:</strong> {{ item[2].strftime('%Y-%m-%d %H:%M:%S') }}</p> <!-- Время -->
-
+                <p><strong>Время:</strong> {{ item[2].strftime('%d-%m-%Y %H:%M:%S') }}</p> <!-- Время -->
+                <p><b>Ответственный: {{item[4]}}</b></p>
                 <!-- Кнопки "Редактировать" и "Решено" -->
                 <div class="card-buttons">
                     <a href="/edit/{{ item[3] }}" class="button">Редактировать</a>
@@ -186,8 +187,8 @@
             <div class="card">
                 <h2>{{ item[0] }}</h2>  <!-- Description -->
                 <p>{{ item[1] }}</p>    <!-- Message -->
-                <p><strong>Время:</strong> {{ item[2].strftime('%Y-%m-%d %H:%M:%S') }}</p> <!-- Время -->
-
+                <p><strong>Время:</strong> {{ item[2].strftime('%d-%m-%Y %H:%M:%S') }}</p> <!-- Время -->
+                <p><b>Ответственный: {{item[4]}}</b></p>
                 <!-- Только кнопка "Редактировать" -->
                 <div class="card-buttons">
                     <a href="/edit/{{ item[3] }}" class="button">Редактировать</a>

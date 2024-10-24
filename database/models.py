@@ -29,7 +29,12 @@ class Problems(Model):
         null=True
     )
     time = fields.DatetimeField(auto_now_add=True)
-
+    responsible = fields.ForeignKeyField(
+        'models_person.Person',
+        related_name='problems',
+        on_delete=fields.SET_NULL,
+        null=True
+    )
 
     class Meta:
         table = "problems"
